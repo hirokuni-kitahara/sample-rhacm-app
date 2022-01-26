@@ -2,8 +2,8 @@
 apiVersion: tower.ansible.com/v1alpha1
 kind: AnsibleJob
 metadata:
-  name: sample-rhacm-app-ansible-job
-  namespace: awx-resource-operator
+  name: sample-rhacm-app-ansiblejob
+  namespace: sample-app
   labels:
     app.kubernetes.io/name: sample-rhacm-app
 spec:
