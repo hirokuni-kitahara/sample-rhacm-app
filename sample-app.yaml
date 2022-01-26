@@ -1,0 +1,67 @@
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: Channel
+metadata:
+  name: sample-rhacm-app-chan
+  namespace: sample-app
+  labels:
+    app.kubernetes.io/name: sample-rhacm-app
+  annotations:
+    apps.open-cluster-management.io/github-path: deploy
+spec:
+  type: GitHub
+  pathname: https://github.com/hirokuni-kitahara/sample-rhacm-app.git
+  # secretRef:
+  #   name: github-credentials
+---
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: sample-rhacm-app
+  namespace: sample-app
+spec:
+  componentKinds:
+  - group: apps.open-cluster-management.io
+    kind: Subscription
+  descriptor: {}
+  selector:
+    matchExpressions:
+    - key: app.kubernetes.io/name
+      operator: In
+      values:
+      - sample-rhacm-app
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: Subscription
+metadata:
+  annotations:
+    apps.open-cluster-management.io/git-branch: main
+    apps.open-cluster-management.io/github-path: deploy
+  name: sample-rhacm-app
+  namespace: sample-app
+  labels:
+    app.kubernetes.io/name: sample-rhacm-app
+spec:
+  channel: sample-app/sample-rhacm-app-chan
+  # hooksecretref:
+  #   name: toweraccess
+  placement:
+    placementRef:
+      kind: PlacementRule
+      name: sample-rhacm-app-placementrule
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: sample-rhacm-app-placementrule
+  namespace: sample-app
+spec:
+  clusterConditions:
+  - status: "True"
+    type: ManagedClusterConditionAvailable
+  clusterSelector:
+    matchExpressions:
+    - key: local-cluster
+      operator: In
+      values:
+      - true
