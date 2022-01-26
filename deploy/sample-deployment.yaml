@@ -8,6 +8,7 @@ metadata:
   labels:
     testlabel: testlabel
     app: nginx
+    app.kubernetes.io/name: sample-rhacm-app
 spec:
   replicas: 2
   selector:
