@@ -43,8 +43,8 @@ metadata:
     app.kubernetes.io/name: sample-rhacm-app
 spec:
   channel: sample-app/sample-rhacm-app-chan
-  # hooksecretref:
-  #   name: toweraccess
+  hooksecretref:
+    name: admin
   placement:
     placementRef:
       kind: PlacementRule
