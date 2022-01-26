@@ -42,7 +42,7 @@ metadata:
   labels:
     app.kubernetes.io/name: sample-rhacm-app
 spec:
-  channel: sample-app/sample-rhacm-app-chan
+  channel: awx-resource-operator/sample-rhacm-app-chan
   hooksecretref:
     name: admin
   placement:
