@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-deployment
+  namespace: sample-app
+  annotations:
+    testanno: testanno
+  labels:
+    testlabel: testlabel
+    app: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      hostPID: true
+      containers:
+      - name: nginx
+        # image: nginx:1.14.2
+        image: ubuntu:18.04
+        command: ["bash"]
+        args: ["-c", "while true; do\n  echo running...\n  sleep 20\ndone"]
+        resources:
+          requests:
+            cpu: 50m         
+        ports:
+        - containerPort: 80
+
+      

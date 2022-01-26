@@ -1,0 +1,11 @@
+---
+apiVersion: tower.ansible.com/v1alpha1
+kind: AnsibleJob
+metadata:
+  name: sample-rhacm-app-ansible-job
+  namespace: awx-resource-operator
+  labels:
+    app.kubernetes.io/name: sample-rhacm-app
+spec:
+  tower_auth_secret: admin
+  job_template_name: Playbook Integrity Job Template
