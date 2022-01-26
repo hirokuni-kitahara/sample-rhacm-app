@@ -3,7 +3,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: Channel
 metadata:
   name: sample-rhacm-app-chan
-  namespace: sample-app
+  namespace: awx-resource-operator
   labels:
     app.kubernetes.io/name: sample-rhacm-app
   annotations:
@@ -18,7 +18,7 @@ apiVersion: app.k8s.io/v1beta1
 kind: Application
 metadata:
   name: sample-rhacm-app
-  namespace: sample-app
+  namespace: awx-resource-operator
 spec:
   componentKinds:
   - group: apps.open-cluster-management.io
@@ -38,7 +38,7 @@ metadata:
     apps.open-cluster-management.io/git-branch: main
     apps.open-cluster-management.io/github-path: deploy
   name: sample-rhacm-app
-  namespace: sample-app
+  namespace: awx-resource-operator
   labels:
     app.kubernetes.io/name: sample-rhacm-app
 spec:
@@ -54,7 +54,7 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
   name: sample-rhacm-app-placementrule
-  namespace: sample-app
+  namespace: awx-resource-operator
 spec:
   clusterConditions:
   - status: "True"

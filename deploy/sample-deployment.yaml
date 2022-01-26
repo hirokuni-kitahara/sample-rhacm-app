@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sample-deployment
-  namespace: sample-app
+  namespace: awx-resource-operator
   annotations:
     testanno: testanno
   labels:
